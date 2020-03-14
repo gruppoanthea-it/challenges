@@ -21,6 +21,12 @@ namespace Strings
             var splittedString = Regex.Split(s, globalPattern);
             var numbers = splittedString[splittedString.Length - 2];
 
+            foreach (var match in delimitersMatches)
+            {
+                var delimiter = match.ToString()[1..^1];
+                numbers = numbers.Replace(delimiter, ",");
+            }
+
             switch (numbers.Length)
             {
                 case 0:
@@ -30,10 +36,7 @@ namespace Strings
                     result = int.Parse(numbers);
                     break;
                 default:
-                    
-                    string firstMatch = delimitersMatches[0].ToString();
-                    var delimiter = firstMatch.ToString().Substring(1, firstMatch.Length - 2);
-                    var numbersArrayString = numbers.Split(delimiter);
+                    var numbersArrayString = numbers.Split(',');
                     
                     foreach(String stringNumber in numbersArrayString)
                     {

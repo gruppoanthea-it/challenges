@@ -59,5 +59,13 @@ namespace Strings.Tests
             var result = stringCalculator.Add("//[***]//1***2");
             Assert.Equal(3, result);
         }
+
+        [Fact]
+        public void GetResultWithMultipleCustomDelimiters()
+        {
+            StringCalculator stringCalculator = new StringCalculator();
+            var result = stringCalculator.Add("//[***][$#]//1***2$#4");
+            Assert.Equal(7, result);
+        }
     }
 }
