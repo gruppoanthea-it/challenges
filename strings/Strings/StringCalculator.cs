@@ -10,9 +10,7 @@ namespace Strings
         public int Add(string s)
         {
             if (!s.StartsWith('/'))
-            {
-                s = "//[,]//" + s;
-            }
+                s = "//[,]//" + s;          
 
             int result = 0;
             var exceptionMessage = new StringBuilder();
@@ -52,9 +50,8 @@ namespace Strings
             }
 
             if (exceptionMessage.Length > 0)
-            {
                 throw new NegativeNumbersException(exceptionMessage.ToString().Substring(0, exceptionMessage.Length - 1));
-            }
+            
             return result;
         }
     }
