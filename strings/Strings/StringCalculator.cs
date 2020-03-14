@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Strings
 {
@@ -8,6 +9,7 @@ namespace Strings
         public int Add(string numbers)
         {
             int result = 0;
+            var exceptionMessage = new StringBuilder();
 
             switch (numbers.Length)
             {
@@ -18,13 +20,22 @@ namespace Strings
                     result = int.Parse(numbers);
                     break;
                 default:
-
                     var numbersArrayString = numbers.Split(',');
-                    foreach(String number in numbersArrayString)
+                    foreach(String stringNumber in numbersArrayString)
                     {
-                        result += int.Parse(number);
+                        int number = int.Parse(stringNumber);
+                        if(number < 0)
+                        {
+                            exceptionMessage.Append(String.Format("{0} ", number));
+                        }
+                        result += number;
                     }
                     break;
+            }
+
+            if (exceptionMessage.Length > 0)
+            {
+                throw new NegativeNumbersException(exceptionMessage.ToString().Substring(0, exceptionMessage.Length - 1));
             }
             return result;
 
