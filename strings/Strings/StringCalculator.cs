@@ -11,6 +11,8 @@ namespace Strings
 
             if (numbers.Length == 0)
                 return result;
+            else if (numbers.Length == 1)
+                return int.Parse(numbers);
             else
                 return result;
         }
