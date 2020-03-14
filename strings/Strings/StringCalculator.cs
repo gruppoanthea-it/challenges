@@ -7,14 +7,24 @@ namespace Strings
     {
         public int Add(string numbers)
         {
-            int result=0;
+            int result = 0;
 
-            if (numbers.Length == 0)
-                return result;
-            else if (numbers.Length == 1)
-                return int.Parse(numbers);
-            else
-                return result;
+            switch (numbers.Length)
+            {
+                case 0:
+                    result = 0;
+                    break;
+                case 1:
+                    result = int.Parse(numbers);
+                    break;
+                case 3:
+
+                    var numbersArrayString = numbers.Split(',');
+                    result = (int.Parse(numbersArrayString[0]) + int.Parse(numbersArrayString[1]));
+                    break;
+            }
+            return result;
+
         }
     }
 }
