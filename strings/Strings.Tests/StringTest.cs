@@ -44,6 +44,13 @@ namespace Strings.Tests
             Assert.Equal("Negative numbers are not allowed: -2 -4", ex.Message);
         }
 
+        [Fact]
+        public void IgnoreNumbersGreaterOrEqualThanThousand()
+        {
+            StringCalculator stringCalculator = new StringCalculator();
+            var result = stringCalculator.Add("1,1000,1100,2");
+            Assert.Equal(3, result);
+        }
 
     }
 }

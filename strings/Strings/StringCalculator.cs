@@ -24,10 +24,12 @@ namespace Strings
                     foreach(String stringNumber in numbersArrayString)
                     {
                         int number = int.Parse(stringNumber);
-                        if(number < 0)
+                        if (number < 0)
                         {
                             exceptionMessage.Append(String.Format("{0} ", number));
                         }
+                        else if (number >= 1000)
+                            continue;
                         result += number;
                     }
                     break;
