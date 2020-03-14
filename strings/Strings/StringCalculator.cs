@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Strings
 {
     public class StringCalculator
     {
-        public int Add(string numbers)
+        public int Add(string s)
         {
+            if (!s.StartsWith('/'))
+            {
+                s = "//[,]//" + s;
+            }
+
             int result = 0;
             var exceptionMessage = new StringBuilder();
+            var globalPattern = @"^(\/{2})(\[.*\])(\/{2})(.*)$";
+            var delimitersMatches = Regex.Matches(s, @"\[(.*?)\]");
+            var splittedString = Regex.Split(s, globalPattern);
+            var numbers = splittedString[splittedString.Length - 2];
 
             switch (numbers.Length)
             {
@@ -20,7 +30,11 @@ namespace Strings
                     result = int.Parse(numbers);
                     break;
                 default:
-                    var numbersArrayString = numbers.Split(',');
+                    
+                    string firstMatch = delimitersMatches[0].ToString();
+                    var delimiter = firstMatch.ToString().Substring(1, firstMatch.Length - 2);
+                    var numbersArrayString = numbers.Split(delimiter);
+                    
                     foreach(String stringNumber in numbersArrayString)
                     {
                         int number = int.Parse(stringNumber);
@@ -32,6 +46,7 @@ namespace Strings
                             continue;
                         result += number;
                     }
+                    
                     break;
             }
 
