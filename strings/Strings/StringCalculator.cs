@@ -38,7 +38,6 @@ namespace Strings
                 throw new NegativeNumbersException(exceptionMessage.ToString().Substring(0, exceptionMessage.Length - 1));
             }
             return result;
-
         }
     }
 }

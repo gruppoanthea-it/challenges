@@ -40,7 +40,6 @@ namespace Strings.Tests
         public void GetExcpetionWithNegativeNumbers()
         {
             StringCalculator stringCalculator = new StringCalculator();
-            var result = stringCalculator.Add("1,-2,3,-4");
             var ex = Assert.Throws<NegativeNumbersException>(() => stringCalculator.Add("1,-2,3,-4"));
             Assert.Equal("Negative numbers are not allowed: -2 -4", ex.Message);
         }
