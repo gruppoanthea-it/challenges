@@ -17,10 +17,13 @@ namespace Strings
                 case 1:
                     result = int.Parse(numbers);
                     break;
-                case 3:
+                default:
 
                     var numbersArrayString = numbers.Split(',');
-                    result = (int.Parse(numbersArrayString[0]) + int.Parse(numbersArrayString[1]));
+                    foreach(String number in numbersArrayString)
+                    {
+                        result += int.Parse(number);
+                    }
                     break;
             }
             return result;

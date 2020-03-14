@@ -19,12 +19,21 @@ namespace Strings.Tests
         }
 
         [Fact]
-        public void GetAddedNumberFromStringWithTwoNumber()
+        public void GetAddedNumberFromStringWithTwoNumbers()
         {
             StringCalculator stringCalculator = new StringCalculator();
 
             var result = stringCalculator.Add("1,2");
             Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void GetAddedNumberFromStringWithUknownAmountOfNumbers()
+        {
+            StringCalculator stringCalculator = new StringCalculator();
+
+            var result = stringCalculator.Add("1,2,3,4");
+            Assert.Equal(10, result);
         }
     }
 }
