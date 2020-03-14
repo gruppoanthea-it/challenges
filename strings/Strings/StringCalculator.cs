@@ -19,13 +19,11 @@ namespace Strings
             var globalPattern = @"^(\/{2})(\[.*\])(\/{2})(.*)$";
             var delimitersMatches = Regex.Matches(s, @"\[(.*?)\]");
             var splittedString = Regex.Split(s, globalPattern);
-            var numbers = splittedString[splittedString.Length - 2];
+            var numbers = splittedString[^2];
 
             foreach (var match in delimitersMatches)
-            {
-                var delimiter = match.ToString()[1..^1];
-                numbers = numbers.Replace(delimiter, ",");
-            }
+                numbers = numbers.Replace(match.ToString()[1..^1], ",");
+            
 
             switch (numbers.Length)
             {
